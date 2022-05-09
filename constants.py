@@ -1,4 +1,4 @@
-# stałe: koordynaty,nazwy miast, kraje
+# constatnts, city_names, coors etc.
 Key = "59e62469a3da06b2a9a30ff73c2c0d05"
 
 # london coordinates

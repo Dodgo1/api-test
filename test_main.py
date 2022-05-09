@@ -75,3 +75,4 @@ class TestApiErrorParam:
     def test_city(city_name):
         response = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={Key}")
         assert response.status_code == HTTPStatus.NOT_FOUND
+
