@@ -28,19 +28,16 @@ class TestApiCity:
     # test using city names
 
     @staticmethod
-    @pytest.mark.parametrize("city_name,expected", [(city_names[0], HTTPStatus.OK), (city_names[1], HTTPStatus.OK),
-                                                    (city_names[2], HTTPStatus.OK)])
-    def test_city(city_name, expected):
+    @pytest.mark.parametrize("city_name", [city_names[0], city_names[1], city_names[2]])
+    def test_city(city_name):
         response = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={Key}")
-        assert response.status_code == expected
+        assert response.status_code == HTTPStatus.OK
 
     @staticmethod
-    @pytest.mark.parametrize("city_name,expected",
-                             [(city_names_incorrect[0], HTTPStatus.OK), (city_names_incorrect[1], HTTPStatus.OK),
-                              (city_names_incorrect[2], HTTPStatus.OK)])
-    def test_city_incorrect(city_name, expected):
+    @pytest.mark.parametrize("city_name", [city_names_incorrect[0], city_names_incorrect[1], city_names_incorrect[2]])
+    def test_city_incorrect(city_name):
         response = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={Key}")
-        assert response.status_code == expected
+        assert response.status_code == HTTPStatus.OK
 
 
 class TestApiError:
@@ -48,34 +45,33 @@ class TestApiError:
     def test_coords_letter(self):
         response = requests.get(
             f"https://api.openweathermap.org/data/2.5/weather?lat={'a'}&lon={'b'}&appid={Key}")
-        assert response != HTTPStatus.OK
+        assert response.status_code == HTTPStatus.BAD_REQUEST
 
     def test_coords_number(self):
         response = requests.get(
-            f"https://api.openweathermap.org/data/2.5/weather?lat={'1'}&lon={'2'}&appid={Key}")
-        assert response != HTTPStatus.OK
+            f"https://api.openweathermap.org/data/2.5/weather?lat={'d'}&lon={'f'}&appid={Key}")
+        assert response.status_code == HTTPStatus.BAD_REQUEST
 
     def test_city_letter(self):
         response = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={'a'}&appid={Key}")
-        assert response != HTTPStatus.OK
+        assert response.status_code == HTTPStatus.NOT_FOUND
 
     def test_city_number(self):
         response = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={'1'}&appid={Key}")
-        assert response != HTTPStatus.OK
+        assert response.status_code == HTTPStatus.NOT_FOUND
 
 
 class TestApiErrorParam:
 
     @staticmethod
-    @pytest.mark.parametrize("lat,lon", [("a", "b"), ("1", "2")])
+    @pytest.mark.parametrize("lat,lon", [("a", "b"), ("c", "d")])
     def test_coords(lat, lon):
         response = requests.get(
             f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={Key}")
-        assert response != HTTPStatus.OK
+        assert response.status_code == HTTPStatus.BAD_REQUEST
 
     @staticmethod
     @pytest.mark.parametrize("city_name", ["a", "1"])
     def test_city(city_name):
         response = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={Key}")
-        assert response != HTTPStatus.OK
-
+        assert response.status_code == HTTPStatus.NOT_FOUND
