@@ -83,7 +83,7 @@ class TestApiResponse:
     def test_response_types(self,LAT, LON):
         validate(instance=self.response.json(), schema=SCHEMA)
 
-    def test_if_response_exists(self):
+
 
 
 
