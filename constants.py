@@ -1,5 +1,14 @@
 # constatnts, city_names, coors etc.
-Key = "59e62469a3da06b2a9a30ff73c2c0d05"
+KEY = "59e62469a3da06b2a9a30ff73c2c0d05"
+
+
+def api_coordinates_link(lat, lon):  # :int :int
+    return f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={KEY}"
+
+
+def api_city_link(city_name: str):
+    return f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={KEY}"
+
 
 # london coordinates
 LONDON = {
@@ -26,49 +35,49 @@ CITY_NAMES_DIFFERENT_CASES = "tOkYo", "DeLhi", "dhaKa", "new york", "MoCscOw", "
 
 # Json testing
 TEST_RESPONSE = {
-        "base": "stations",
-        "clouds": {
-            "all": 100
-        },
-        "cod": 200,
-        "coord": {
-            "lon": 139,
-            "lat": 35
-        },
-        "dt": 1652173547,
-        "id": 1851632,
-        "main": {
-            "temp": 288.29,
-            "feels_like": 287.66,
-            "temp_min": 288.29,
-            "temp_max": 288.29,
-            "pressure": 1020,
-            "humidity": 69,
-            "sea_level": 1020,
-            "grnd_level": 991
-        },
-        "name": "Shuzenji",
-        "sys": {
-            "country": "JP",
-            "sunrise": 1652125502,
-            "sunset": 1652175351
-        },
-        "timezone": 32400,
-        "visibility": 10000,
-        "weather": [
-            {
-                "id": 804,
-                "main": "Clouds",
-                "description": "overcast clouds",
-                "icon": "04d"
-            }
-        ],
-        "wind": {
-            "speed": 1.92,
-            "deg": 84,
-            "gust": 2.91
+    "base": "stations",
+    "clouds": {
+        "all": 100
+    },
+    "cod": 200,
+    "coord": {
+        "lon": 139,
+        "lat": 35
+    },
+    "dt": 1652173547,
+    "id": 1851632,
+    "main": {
+        "temp": 288.29,
+        "feels_like": 287.66,
+        "temp_min": 288.29,
+        "temp_max": 288.29,
+        "pressure": 1020,
+        "humidity": 69,
+        "sea_level": 1020,
+        "grnd_level": 991
+    },
+    "name": "Shuzenji",
+    "sys": {
+        "country": "JP",
+        "sunrise": 1652125502,
+        "sunset": 1652175351
+    },
+    "timezone": 32400,
+    "visibility": 10000,
+    "weather": [
+        {
+            "id": 804,
+            "main": "Clouds",
+            "description": "overcast clouds",
+            "icon": "04d"
         }
-    }   # response from open weather api for testing purposes
+    ],
+    "wind": {
+        "speed": 1.92,
+        "deg": 84,
+        "gust": 2.91
+    }
+}  # response from open weather api for testing purposes
 SCHEMA = {
     "type": "object",
     "properties": {
@@ -122,9 +131,9 @@ SCHEMA = {
         "sys": {
             "type": "object",
             "properties": {
-                "country": {"type":"string"},
-                "sunrise": {"type":"number"},
-                "sunset": {"type":"number"}
+                "country": {"type": "string"},
+                "sunrise": {"type": "number"},
+                "sunset": {"type": "number"}
             }
         },
 
@@ -154,5 +163,4 @@ SCHEMA = {
         }
 
     }
-}           # My Schema full of frustration - it works :D
-
+}  # My Schema full of frustration - it works :D
