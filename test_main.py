@@ -13,8 +13,9 @@ import requests
 from jsonschema import validate
 from jsonschema.exceptions import ValidationError
 
-from constants import LONDON, AMSTERDAM, BOMBAY, CITY_NAMES, CITY_NAMES_DIFFERENT_CASES, SCHEMA
+from constants import LONDON, AMSTERDAM, BOMBAY, CITY_NAMES, CITY_NAMES_DIFFERENT_CASES
 from helpers import api_coordinates_link, api_city_link
+from schema import SCHEMA
 
 
 # test using lat and lon
