@@ -1,14 +1,9 @@
-# constatnts, city_names, coors etc.
+"""
+Here are the constants used by test_main.py and helpers.py
+This file also includes the key used for api testing
+"""
+
 KEY = "59e62469a3da06b2a9a30ff73c2c0d05"
-
-
-def api_coordinates_link(lat, lon):  # :int :int
-    return f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={KEY}"
-
-
-def api_city_link(city_name: str):
-    return f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={KEY}"
-
 
 # london coordinates
 LONDON = {
