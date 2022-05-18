@@ -1,6 +1,8 @@
 """
 Functions used for creating links in test_main.py
 """
+import os
+
 from dotenv import load_dotenv
 from jsonschema import validate
 from jsonschema.exceptions import ValidationError
@@ -8,7 +10,7 @@ from pytest import fail
 
 load_dotenv()
 
-KEY = load_dotenv("KEY")
+KEY = os.environ["KEY"]
 
 
 def api_coordinates_link(lat, lon):
