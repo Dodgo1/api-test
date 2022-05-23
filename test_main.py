@@ -158,6 +158,7 @@ class TestApiResponse:
         """
 
         validate_response_json(response_coordinates, SCHEMA_COORDINATES)
+        assert response_coordinates.status_code == HTTPStatus.OK
 
     @staticmethod
     def test_validate_json_response_city_name(response_city_name):
@@ -169,3 +170,4 @@ class TestApiResponse:
         """
 
         validate_response_json(response_city_name, SCHEMA_CITY_NAME)
+        assert response_city_name.status_code == HTTPStatus.OK

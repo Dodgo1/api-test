@@ -3,8 +3,6 @@ Here are the constants used by test_main.py and helpers.py
 This file also includes the key used for api testing
 """
 
-KEY = "59e62469a3da06b2a9a30ff73c2c0d05"
-
 # london coordinates
 LONDON = {
     "COUNTRY": "England",
