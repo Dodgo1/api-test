@@ -3,7 +3,6 @@ Functions used for creating links in test_main.py
 """
 import os
 
-import pytest
 from dotenv import load_dotenv
 from jsonschema import validate
 from jsonschema.exceptions import ValidationError
@@ -12,8 +11,9 @@ from pytest import fail
 load_dotenv()
 
 KEY = os.getenv("API_KEY")
+
 if not KEY:
-    pytest.fail("no key to api in env")
+    raise ValueError("no key to api in env")
 
 
 def api_coordinates_link(lat, lon):
