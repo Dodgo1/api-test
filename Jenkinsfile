@@ -1,7 +1,4 @@
 pipeline{
-    environment {
-        KEY = "59e62469a3da06b2a9a30ff73c2c0d05"
-    }
     agent{
         label 'jenkins-node-intern'
     }
@@ -17,23 +14,24 @@ pipeline{
                     reuseNode true
                 }
             }
-            steps {
-                script {
-                    sh """
-                    pip install pipenv
-                    pipenv install
-                    """
+            stages{
+                stage("install dependencies"){
+                    steps{
+                        sh """
+                        pip install pipenv
+                        pipenv install
+                        """
+                    }
                 }
-                script {
-                    sh """
-                    cp .env.example .env
-                    echo "${KEY}" > .env
-                    """
-                }
-                script{
-                    sh """
-                    pipenv run pytest test_main.py
-                    """
+                stage("run tests"){
+                     environment {
+                        API_KEY = "59e62469a3da06b2a9a30ff73c2c0d05"
+                     }
+                    steps{
+                        sh """
+                        pipenv run pytest test_main.py
+                        """
+                    }
                 }
             }
         }

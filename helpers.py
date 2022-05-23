@@ -11,7 +11,7 @@ from pytest import fail
 
 load_dotenv()
 
-KEY = os.getenv("KEY")
+KEY = os.getenv("API_KEY")
 if not KEY:
     pytest.fail("no key to api in env")
 
