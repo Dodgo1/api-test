@@ -29,10 +29,12 @@ pipeline{
             }
         }
         stage("run tests"){
-            script{
-                sh """
-                pipenv run pytest test_main.py
-                """
+            steps{
+                script{
+                    sh """
+                    pipenv run pytest test_main.py
+                    """
+                }
             }
         }
     }
