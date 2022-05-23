@@ -3,7 +3,7 @@ pipeline{
         label 'jenkins-node-intern'
     }
     stages{
-        stage("run a test"){
+        stage("setup docker agent"){
             agent {
                 docker {
                     label 'jenkins-node-intern'
