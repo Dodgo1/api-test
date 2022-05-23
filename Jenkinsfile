@@ -7,7 +7,7 @@ pipeline{
             steps{
                 sh """
                 pip install pipenv
-                pipenv install
+
                 """
             }
         }
