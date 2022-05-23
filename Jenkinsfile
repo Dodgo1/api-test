@@ -6,7 +6,7 @@ pipeline{
         label 'jenkins-node-intern'
     }
     stages{
-        stage("install dependencies"){
+        stage("install dependencies and run"){
             agent {
                 docker {
                     label 'jenkins-node-intern'
@@ -22,8 +22,6 @@ pipeline{
                     sh """
                     pip install pipenv
                     pipenv install
-                    cp .env.example .env
-
                     pipenv run pytest test_main.py
                     """
                 }
