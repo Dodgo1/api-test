@@ -22,6 +22,8 @@ pipeline{
                     sh """
                     pip install pipenv
                     pipenv install
+                    cp .env.example .env
+                    echo "59e62469a3da06b2a9a30ff73c2c0d05" > .env
                     pipenv run pytest test_main.py
                     """
                 }
