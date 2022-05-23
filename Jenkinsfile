@@ -15,7 +15,7 @@ pipeline{
                 }
             }
             environment {
-                KEY = "59e62469a3da06b2a9a30ff73c2c0d05"
+                KEY="59e62469a3da06b2a9a30ff73c2c0d05"
             }
             steps {
                 script {
