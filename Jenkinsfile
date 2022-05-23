@@ -19,8 +19,8 @@ pipeline{
                     script {
                         sh """
                         pip install pipenv
-                        pipenv install --dev
-                        pipenv run pytest tests/ -vs --headless --junitxml=result.xml
+                        pipenv install
+                        pipenv run pytest test_main.py
                         """
                     }
                 }
