@@ -6,22 +6,26 @@ pipeline{
         label 'jenkins-node-intern'
     }
     stages{
-        stage("install dependencies and create .env"){
-            agent {
-                docker {
-                    label 'jenkins-node-intern'
-                    image 'nexus.tkhtechnology.com/amd64/chrome_python:latest'
-                    registryUrl 'https://nexus.tkhtechnology.com'
-                    registryCredentialsId 'jenkins_office365_account'
-                    args '-u root:root'
-                    reuseNode true
-                }
+        agent {
+            docker {
+                label 'jenkins-node-intern'
+                image 'nexus.tkhtechnology.com/amd64/chrome_python:latest'
+                registryUrl 'https://nexus.tkhtechnology.com'
+                registryCredentialsId 'jenkins_office365_account'
+                args '-u root:root'
+                reuseNode true
             }
+        }
+        stage("install dependencies and create .env"){
             steps {
                 script {
                     sh """
                     pip install pipenv
                     pipenv install
+                    """
+                }
+                script {
+                    sh """
                     cp .env.example .env
                     echo "${KEY}" > .env
                     """
