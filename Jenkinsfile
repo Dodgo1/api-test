@@ -1,9 +1,9 @@
 pipeline{
+    environment {
+        KEY = "59e62469a3da06b2a9a30ff73c2c0d05"
+    }
     agent{
         label 'jenkins-node-intern'
-    }
-    environment {
-        KEY="59e62469a3da06b2a9a30ff73c2c0d05"
     }
     stages{
         stage("install dependencies"){
