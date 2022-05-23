@@ -14,17 +14,20 @@ pipeline{
                     reuseNode true
                 }
             }
+            environment {
+                KEY = "59e62469a3da06b2a9a30ff73c2c0d05"
+            }
+            steps {
+                script {
+                    sh """
+                    pip install pipenv
+                    pipenv install
+                    cp .env.example .env
 
-                steps {
-                    script {
-                        sh """
-                        pip install pipenv
-                        pipenv install
-                        pipenv run pytest test_main.py
-                        """
-                    }
+                    pipenv run pytest test_main.py
+                    """
                 }
-
+            }
         }
     }
 }
