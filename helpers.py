@@ -10,7 +10,7 @@ from pytest import fail
 
 load_dotenv()
 
-KEY = os.environ["KEY"]
+KEY = os.getenv("KEY", "key not provided")
 
 
 def api_coordinates_link(lat, lon):
