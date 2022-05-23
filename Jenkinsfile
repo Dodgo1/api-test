@@ -5,8 +5,11 @@ pipeline{
     stages{
         stage("install dependencies"){
             steps{
-                sh "pip install pipenv"
-                sh "pipenv --version"
+                sh """
+                pip install pipenv
+                pipenv install
+                pipenv run pytest test_main.py
+                """
             }
         }
 
