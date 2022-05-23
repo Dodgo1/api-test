@@ -5,11 +5,9 @@ pipeline{
     stages{
         stage("install dependencies"){
             steps{
-                sh """
-                pip install pipenv
-                pipenv shell
-                pipenv install
-                """
+                sh "pip install pipenv"
+                sh "pipenv shell"
+                sh "pipenv install"
             }
         }
 
