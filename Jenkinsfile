@@ -4,21 +4,27 @@ pipeline{
     }
     stages{
         stage("install dependencies"){
-            steps{
-                sh """
-                pip install pipenv
-                pipenv install
-                pipenv run pytest test_main.py
-                """
+            agent {
+                docker {
+                    label 'jenkins-node-intern'
+                    image 'nexus.tkhtechnology.com/amd64/chrome_python:latest'
+                    registryUrl 'https://nexus.tkhtechnology.com'
+                    registryCredentialsId 'jenkins_office365_account'
+                    args '-u root:root'
+                    reuseNode true
+                }
             }
-        }
 
-        stage("Run test"){
-            steps{
-                sh """
-                pytest test_main.py
-                """
-            }
+                steps {
+                    script {
+                        sh """
+                        pip install pipenv
+                        pipenv install --dev
+                        pipenv run pytest tests/ -vs --headless --junitxml=result.xml
+                        """
+                    }
+                }
+
         }
     }
 }
