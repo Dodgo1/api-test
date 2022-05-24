@@ -1,6 +1,6 @@
 stages:
   - codestyle
-  - Test
+  - test-1
 sonar:
   stage: codestyle
   image:
