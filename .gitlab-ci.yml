@@ -17,8 +17,6 @@ sonar:
     - schedules
 test-1:
   stage: Test
-  image:
-    name: python:3.10-alpine
   script:
     - pip install pipenv
     - pipenv install
