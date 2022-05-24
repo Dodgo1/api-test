@@ -1,6 +1,6 @@
 stages:
   - codestyle
-  - test-1
+  - Test
 sonar:
   stage: codestyle
   image:
@@ -23,3 +23,6 @@ test-1:
     - pip install pipenv
     - pipenv install
     - pipenv run pytest test_main.py
+  only:
+    - merge_requests
+    - schedules
