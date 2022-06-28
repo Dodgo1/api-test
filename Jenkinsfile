@@ -7,11 +7,8 @@ pipeline{
             agent {
                 docker {
                     label 'jenkins-node-intern'
-                    image 'nexus.tkhtechnology.com/amd64/chrome_python:latest'
-                    registryUrl 'https://nexus.tkhtechnology.com'
-                    registryCredentialsId 'jenkins_office365_account'
+                    image 'python:3.10-alpine'
                     args '-u root:root'
-                    reuseNode true
                 }
             }
             stages{
