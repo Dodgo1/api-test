@@ -1,0 +1,37 @@
+stages:
+  - codestyle
+  - Test
+sonar:
+  stage: codestyle
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+  variables:
+    SONAR_AUTH_TOKEN: $SONAR_AUTH_TOKEN
+    SONAR_HOST_URL: *SECRET*
+  script:
+    - sonar-scanner -Dsonar.login=${SONAR_AUTH_TOKEN}
+  tags:
+    - docker_shared
+  only:
+    - merge_requests
+    - schedules
+test-1:
+  stage: Test
+  image:
+    name: python:3.10-alpine
+  script:
+    - pip install pipenv
+    - pipenv install
+    - pipenv run pytest test_main.py
+  tags:
+    - docker_shared
+  only:
+    - merge_requests
+    - schedules
+  artifacts:
+    when: always
+    paths:
+      - test-api-raport.xml
+    reports:
+      junit: test-api-raport.xml
+
